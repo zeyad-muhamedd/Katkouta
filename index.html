@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Message - All Pages</title>
+  <style>
+    /* --- shared styles (kept your original look & fonts) --- */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
+
+    :root{ --bg1: linear-gradient(135deg, #ffccd5 0%, #cc99cc 100%); }
+
+    html,body { height:100%; margin:0; padding:0; font-family: 'Noto Sans Arabic', sans-serif; direction: rtl; }
+    body {
+      background: var(--bg1);
+      display:flex; align-items:center; justify-content:center;
+      min-height:100vh; overflow:auto;
+    }
+
+    /* page wrapper */
+    .page {
+      display: none;           /* hidden by default */
+      width: 95%;
+      max-width: 900px;
+      margin: 20px;
+    }
+    .page.active { display: block; }
+
+    /* keep your container style */
+    .container {
+      background: rgba(255, 230, 240, 0.95);
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 15px 40px rgba(204, 153, 204, 0.4);
+      border: 2px solid rgba(255, 105, 180, 0.5);
+      position: relative;
+      overflow-y: auto;
+      max-height: 75vh;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+
+    h1 { color:#ff69b4; font-size:1.6em; margin:0 0 10px 0; text-shadow:1px 1px 3px rgba(0,0,0,0.1); display:flex; justify-content:center; align-items:center; z-index:1;}
+    .initial-message { font-size:1.15em; color:#333; margin-bottom:20px; font-family: Arial, sans-serif; text-align:center; direction:ltr; }
+    .btn, .interaction-btn {
+      background: linear-gradient(45deg, #ff9a8b, #ff6b9d);
+      color:white; border:none; padding:12px 28px; border-radius:50px; font-size:1.05em; cursor:pointer; transition:transform .25s;
+    }
+    .btn:hover, .interaction-btn:hover { transform:scale(1.03); box-shadow:0 5px 15px rgba(0,0,0,0.15) }
+
+    .no-btn { background: linear-gradient(45deg, #bdc3c7, #95a5a6); position:relative; transition:all .25s; }
+
+    .love-message { direction:rtl; text-align:right; line-height:1.6; font-size:1.05em; color:#333; animation:slideIn 1s; overflow-y:auto; max-height:65vh; }
+    @keyframes slideIn { from{opacity:0; transform:translateX(50px)} to{opacity:1; transform:translateX(0)} }
+
+    .love-message p { margin-bottom:15px; padding:10px; background: rgba(255,182,193,0.3); border-radius:10px; border-right:4px solid #ff69b4; word-wrap:break-word; }
+
+    /* hearts layer */
+    .hearts { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .heart { position:absolute; font-size:20px; animation:float 3s linear infinite; }
+    @keyframes float { 0%{ transform:translateY(100vh) rotate(0deg); opacity:1 } 100%{ transform:translateY(-100px) rotate(360deg); opacity:0 } }
+
+    /* responsive */
+    @media (max-width:600px){
+      .container { padding:20px }
+      h1 { font-size:1.25em }
+      .btn, .interaction-btn { padding:10px 18px; font-size:1em }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- hearts layer (for page 3) -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- ---------- PAGE 1 (index.html) ---------- -->
+  <section id="page1" class="page active">
+    <div class="container">
+      <div id="initial">
+        <h1><span>✨</span>A Special Message for You<span>🌸</span></h1>
+        <p class="initial-message">Do you want to continue?</p>
+        <!-- changed to call showPage -->
+        <button class="btn" onclick="showPage('page2')">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PAGE 2 (page2.html) ---------- -->
+  <section id="page2" class="page">
+    <div class="container">
+      <div id="initial2">
+        <h1><span>✨</span>First of all<span>🌸</span></h1>
+        <p class="initial-message" id="loveQuestion">Do you love me? 🙈</p>
+        <!-- "Yes" navigates to page3 -->
+        <button class="btn" onclick="showPage('page3')">Yes</button>
+        <!-- "No" keeps the same playful behavior -->
+        <button class="btn no-btn" id="noBtn" onclick="changeQuestion()">No</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PAGE 3 (page3.html) ---------- -->
+  <section id="page3" class="page">
+    <div class="container">
+      <div class="love-message" id="loveMessageArea">
+        <h1 style="color:#ff69b4; font-size:1.3em; text-align:center;">صباح الخير يا أجمل وأغلى حاجة في حياتي 🌸✨</h1>
+        <p>
+          أنا عايزك تصحي النهارده وإنتي قلبك متطمن وفرحان، وتعرفي إن في حد بيحبك بجد من غير شروط، حد شايفك مختلفة عن أي إنسانة تانية في الدنيا. إنتي مش مجرد شخص عادي عدى في حياتي… إنتي حياتي نفسها. من أول يوم عرفتك فيه، وأنا حاسس إنك مش شبه حد، إنتي ليكي روح نقية جدًا، وطيبة تخلي الواحد يندهش إزاي ممكن يبقى في إنسانة كده. إنتي قمر بجد مش بس في شكلك، لكن في قلبك وضحكتك وحتى دموعك اللي بتخليني أدعي من قلبي ربنا يبعد عنك أي وجع. بجد يا كتكوتة، وجودك غير حياتي بطريقة مش عارف أوصفها، خلاني أبص للدنيا من زاوية تانية. بقيت بصحى من النوم عندي دافع إني أبقى أحسن عشانك، بقيت بدعي أكتر وأقرب من ربنا وأقول: "يا رب احفظها، يا رب خليها ليا، يا رب حقق لها كل اللي بتحلم بيه". أنا واثق فيكي جدًا، واثق إنك قدها، وإنك مش بس هتوصلي تبقي مهندسة قد الدنيا، إنتي هتبقي مميزة جدًا، الكل هيشوف قد إيه إنتي مجتهدة وذكية وبتتعبي عشان توصلي. وأنا أول واحد هيفضل دايمًا وراكي يشجعك، ويزقك لقدام، ويقولك "إنتي قمر وهتوصلي". إنتي عندي مش مجرد حد بضحك معاه أو بهزر معاه، إنتي أكتر من كده بكتير. إنتي الشخص اللي لما بيتعب أنا اللي بزعل عشانه، واللي لما يضحك أنا بفرح كإني طفل صغير. إنتي مش فكرة ولا كلام حلو… إنتي حقيقة في قلبي وعقلي وروحي. وصدقيني مهما قلتلك كلام، عمري ما هعرف أوصلك قد إيه إنتي غالية. يمكن الكلام يخلص، لكن إحساسي ليكي مش هيخلص. يمكن أوصفلك مليون مرة قد إيه إنتي حلوة، بس كل مرة هلاقي إني مقصر. أنا عايزك تبقي عارفة إنك بالنسبالي أهم من أي حاجة: أهم من وقتي، أهم من نفسي، أهم من الدنيا كلها. إنتي الحاجة الوحيدة اللي أنا مستعد أضحي عشانها من غير ما أفكر. إنتي الضحكة اللي بحارب عشان أفضل شايفها، وإنتي الراحة اللي بتهون عليا كل حاجة وحشة. يا قمر حياتي، أنا بوعدك إنك طول ما إنتي معايا، عمرك ما هتحسي إنك لوحدك. عمرك ما هتحتاجي تبصي وراكي تشوفي مين سندك… أنا هكون موجود. في فرحتك هكون أول واحد يشاركك، وفي حزنك هكون الحضن اللي يطبطب عليكي، وفي نجاحك هكون اللي بيفرح بيكي زي الطفل اللي فرحان بأول هدية ليه. أنا مش عايزك تصحي تاني يوم وتفتكري إني زعلتك أو قصرت معاكي… لو في يوم حسيتِ بكده، اعرفي إني غصب عني، وأول ما تقوليللي هرجع أصلح وأطبطب وأخليكي تضحكي تاني. إنتي أهم من أي زعل، أهم من أي خلاف، أهم من أي حاجة. وأنا بدعيلك دلوقتي وإنتي نايمة: يا رب احفظها، يا رب فرّح قلبها، يا رب قوّيها، يا رب خليها منورة حياتي زي ما هي منورة قلبي. يا رب خليها أسعد واحدة في الدنيا. فأول ما تصحي يا ملاكي، افتكري دايمًا إنك مش بس غالية عندي… إنتي كل حياتي. وأنا عمري ما هسيبك ولا هبطل أحبك ولا هبطل أوريكي إنك أغلى حاجة في عيني ❤️🌹
+        </p>
+
+        <button class="interaction-btn" onclick="translateToEnglish()">Translate to English</button>
+        <button class="interaction-btn" onclick="showHearts()" style="margin-top:10px;">If you love me too, click here to see my hearts for you 💖</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* ---------- Navigation (single-file "routing") ---------- */
+    function showPage(pageId) {
+      // hide all pages, show requested
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.add('active');
+        // reset some UI states when arriving to certain pages:
+        if (pageId === 'page2') {
+          // ensure noBtn inside page2 is in-flow initially
+          const noBtn = document.getElementById('noBtn');
+          if (noBtn) {
+            noBtn.style.position = 'relative';
+            noBtn.style.left = '';
+            noBtn.style.top = '';
+          }
+          clickCount = 0;
+          const q = document.getElementById('loveQuestion');
+          if (q) q.textContent = 'Do you love me? 🙈';
+        }
+        if (pageId === 'page3') {
+          // clear hearts area (so multiple visits work fine)
+          document.getElementById('hearts').innerHTML = '';
+          // also reset any translate state
+          const area = document.getElementById('loveMessageArea');
+          if (area) area.dataset.translated = 'false';
+        }
+      }
+      // scroll to top of viewport for better UX
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ---------- Page 2 behavior (No button plays) ---------- */
+    let clickCount = 0;
+    function changeQuestion() {
+      const question = document.getElementById('loveQuestion');
+      clickCount++;
+      if (!question) return;
+      if (clickCount === 1) question.textContent = "Do you love me? 🤨";
+      else if (clickCount === 2) question.textContent = "Do you love me? 😕";
+      else if (clickCount === 3) question.textContent = "Do you love me? 😒";
+      else if (clickCount === 4) question.textContent = "Do you love me? 😤";
+      else if (clickCount === 5) question.textContent = "Do you love me? 😡";
+      else if (clickCount === 6) question.textContent = "Do you love me? 🤬";
+      else if (clickCount >= 7) {
+        // kept the playful (you asked not to change) — preserved original content:
+        question.innerHTML = '<span style="color: red; font-size: 2em; font-weight: bold;">I will kill you 😡🔪</span>';
+      }
+      moveNoButton();
+    }
+
+    function moveNoButton() {
+      const noBtn = document.getElementById('noBtn');
+      const page2 = document.getElementById('page2');
+      if (!noBtn || !page2) return;
+
+      // find the container inside page2 to keep movement bounded
+      const container = page2.querySelector('.container') || page2;
+      const padding = 20;
+      const btnW = noBtn.offsetWidth;
+      const btnH = noBtn.offsetHeight;
+
+      const maxX = Math.max(0, container.clientWidth - btnW - padding);
+      const maxY = Math.max(0, container.clientHeight - btnH - padding);
+
+      // random position inside container (safer)
+      const newX = Math.floor(Math.random() * maxX) + padding/2;
+      const newY = Math.floor(Math.random() * maxY) + padding/2;
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = newX + 'px';
+      noBtn.style.top = newY + 'px';
+      noBtn.style.transform = 'translate(0,0)';
+    }
+
+    /* ---------- Page 3 behavior (translate + hearts) ---------- */
+    function translateToEnglish() {
+      const area = document.getElementById('loveMessageArea');
+      if (!area) return;
+      // toggle translated state stored as data attribute
+      if (area.dataset.translated === 'true') {
+        // revert to Arabic original (we re-insert the Arabic text)
+        area.innerHTML = `
+          <h1 style="color:#ff69b4; font-size:1.3em; text-align:center;">صباح الخير يا أجمل وأغلى حاجة في حياتي 🌸✨</h1>
+          <p>
+            أنا عايزك تصحي النهارده وإنتي قلبك متطمن وفرحان، وتعرفي إن في حد بيحبك بجد من غير شروط، حد شايفك مختلفة عن أي إنسانة تانية في الدنيا. إنتي مش مجرد شخص عادي عدى في حياتي… إنتي حياتي نفسها. من أول يوم عرفتك فيه، وأنا حاسس إنك مش شبه حد، إنتي ليكي روح نقية جدًا، وطيبة تخلي الواحد يندهش إزاي ممكن يبقى في إنسانة كده. إنتي قمر بجد مش بس في شكلك، لكن في قلبك وضحكتك وحتى دموعك اللي بتخليني أدعي من قلبي ربنا يبعد عنك أي وجع. بجد يا كتكوتة، وجودك غير حياتي بطريقة مش عارف أوصفها، خلاني أبص للدنيا من زاوية تانية. بقيت بصحى من النوم عندي دافع إني أبقى أحسن عشانك، بقيت بدعي أكتر وأقرب من ربنا وأقول: "يا رب احفظها، يا رب خليها ليا، يا رب حقق لها كل اللي بتحلم بيه". أنا واثق فيكي جدًا، واثق إنك قدها، وإنك مش بس هتوصلي تبقي مهندسة قد الدنيا، إنتي هتبقي مميزة جدًا، الكل هيشوف قد إيه إنتي مجتهدة وذكية وبتتعبي عشان توصلي. وأنا أول واحد هيفضل دايمًا وراكي يشجعك، ويزقك لقدام، ويقولك "إنتي قمر وهتوصلي". إنتي عندي مش مجرد حد بضحك معاه أو بهزر معاه، إنتي أكتر من كده بكتير. إنتي الشخص اللي لما بيتعب أنا اللي بزعل عشانه، واللي لما يضحك أنا بفرح كإني طفل صغير. إنتي مش فكرة ولا كلام حلو… إنتي حقيقة في قلبي وعقلي وروحي. وصدقيني مهما قلتلك كلام، عمري ما هعرف أوصلك قد إيه إنتي غالية. يمكن الكلام يخلص، لكن إحساسي ليكي مش هيخلص. يمكن أوصفلك مليون مرة قد إيه إنتي حلوة، بس كل مرة هلاقي إني مقصر. أنا عايزك تبقي عارفة إنك بالنسبالي أهم من أي حاجة: أهم من وقتي، أهم من نفسي، أهم من الدنيا كلها. إنتي الحاجة الوحيدة اللي أنا مستعد أضحي عشانها من غير ما أفكر. إنتي الضحكة اللي بحارب عشان أفضل شايفها، وإنتي الراحة اللي بتهون عليا كل حاجة وحشة. يا قمر حياتي، أنا بوعدك إنك طول ما إنتي معايا، عمرك ما هتحسي إنك لوحدك. عمرك ما هتحتاجي تبصي وراكي تشوفي مين سندك… أنا هكون موجود. في فرحتك هكون أول واحد يشاركك، وفي حزنك هكون الحضن اللي يطبطب عليكي، وفي نجاحك هكون اللي بيفرح بيكي زي الطفل اللي فرحان بأول هدية ليه. أنا مش عايزك تصحي تاني يوم وتفتكري إني زعلتك أو قصرت معاكي… لو في يوم حسيتِ بكده، اعرفي إني غصب عني، وأول ما تقوليللي هرجع أصلح وأطبطب وأخليكي تضحكي تاني. إنتي أهم من أي زعل، أهم من أي خلاف، أهم من أي حاجة. وأنا بدعيلك دلوقتي وإنتي نايمة: يا رب احفظها، يا رب فرّح قلبها، يا رب قوّيها، يا رب خليها منورة حياتي زي ما هي منورة قلبي. يا رب خليها أسعد واحدة في الدنيا. فأول ما تصحي يا ملاكي، افتكري دايمًا إنك مش بس غالية عندي… إنتي كل حياتي. وأنا عمري ما هسيبك ولا هبطل أحبك ولا هبطل أوريكي إنك أغلى حاجة في عيني ❤️🌹
+          </p>
+          <button class="interaction-btn" onclick="translateToEnglish()">Translate to English</button>
+          <button class="interaction-btn" onclick="showHearts()" style="margin-top:10px;">If you love me too, click here to see my hearts for you 💖</button>
+        `;
+        area.dataset.translated = 'false';
+      } else {
+        // translate to English (kept the translation content you provided)
+        area.innerHTML = `
+          <h1 style="color:#ff69b4; font-size:0.9em; text-align:center;">Good morning, the most beautiful and precious thing in my life 🌸✨</h1>
+          <p>
+            I want you to wake up today with your heart calm and happy, and know that there is someone who loves you sincerely without conditions, someone who sees you different from any other woman in the world. You are not just an ordinary person who passed through my life… you are my life itself. From the first day I met you, I have felt that you are not like anyone else, you have a very pure and kind soul that amazes me at how someone like you can exist. You are truly a moon not just in your appearance, but in your heart, your smile, and even your tears that make me pray from my heart for God to keep any pain away from you. Truly, my little dove, your presence has changed my life in a way I cannot describe, it made me look at the world from a different perspective. I started waking up with a drive to be better for you, I started praying more and getting closer to God, saying: "Oh Lord, protect her, oh Lord, keep her for me, oh Lord, fulfill all her dreams." I am very confident in you, confident that you are capable, and that you will not only reach to become an engineer of the world, you will be very special, everyone will see how hardworking, smart, and dedicated you are to achieve your goals. And I am the first one who will always be behind you cheering you on, pushing you forward, and telling you "You are a moon and you will make it." You are not just someone I laugh or joke with to me, you are much more than that. You are the person who, when they struggle, I am the one who feels sad for them, and when they laugh, I rejoice like a little child. You are not just an idea or sweet words… you are a reality in my heart, mind, and soul. And believe me, no matter how much I tell you, I will never be able to convey how precious you are. Maybe the words run out, but my feeling for you will never end. Maybe I tell you a million times how beautiful you are, but each time I will find that I fall short. I want you to know that to me, you are more important than anything: more important than my time, more important than myself, more important than the whole world. You are the only thing I am willing to sacrifice for without thinking. You are the smile I fight to keep seeing, and the peace that eases all bad things for me. Oh moon of my life, I promise you that as long as you are with me, you will never feel alone. You will never need to look behind you to see who supports you… I will be there. In your joy, I will be the first to share it with you, in your sadness, I will be the embrace that comforts you, and in your success, I will be the one who rejoices with you like a child happy with their first gift. I don’t want you to wake up another day and think that I upset you or fell short with you… if you ever feel that way, know it’s against my will, and as soon as you tell me, I will fix it, comfort you, and make you laugh again. You are more important than any upset, more important than any disagreement, more important than anything. And I am praying for you now while you are sleeping: Oh Lord, protect her, oh Lord, make her heart happy, oh Lord, strengthen her, oh Lord, let her light up my life as she lights up my heart. Oh Lord, make her the happiest person in the world. So when you wake up, my angel, always remember that you are not just precious to me… you are my whole life. And I will never leave you, never stop loving you, and never stop showing you that you are the most precious thing in my eyes ❤️🌹
+          </p>
+          <button class="interaction-btn" onclick="translateToEnglish()">Translate to Arabic</button>
+          <button class="interaction-btn" onclick="showHearts()" style="margin-top:10px;">If you love me too, click here to see my hearts for you 💖</button>
+        `;
+        area.dataset.translated = 'true';
+      }
+    }
+
+    function showHearts() {
+      const heartsContainer = document.getElementById('hearts');
+      if (!heartsContainer) return;
+      // spawn hearts
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.innerHTML = '💖';
+          // random horizontal start
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.fontSize = (12 + Math.random()*28) + 'px';
+          heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          heartsContainer.appendChild(heart);
+          // remove after animation
+          setTimeout(() => heart.remove(), 6000);
+        }, i * 200);
+      }
+      // small alert after a bit
+      setTimeout(() => {
+        alert('Love You Forever 🌹❤️');
+      }, 3000);
+    }
+
+    // optional: allow back/forward with browser hash
+    // not required, but adds nicer UX: if you want hash routing, uncomment below
+    /*
+    window.addEventListener('hashchange', () => {
+      const h = location.hash.replace('#','');
+      if (h && document.getElementById(h)) showPage(h);
+    });
+    if (location.hash) {
+      const h = location.hash.replace('#','');
+      if (document.getElementById(h)) showPage(h);
+    }
+    */
+  </script>
+</body>
+</html>
